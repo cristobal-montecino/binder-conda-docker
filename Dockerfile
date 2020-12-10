@@ -18,6 +18,4 @@ WORKDIR ${DEFAULT_DIR}
 COPY environment.yml .
 RUN conda env create
 
-EXPOSE 8888
-
 ENTRYPOINT ["conda", "run", "-n", "default"]
