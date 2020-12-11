@@ -47,7 +47,7 @@ exec \"\$@\"\n"\
 && chown "${USER}" "/home/${USER}/conda-run.sh"\
 && chmod +x "/home/${USER}/conda-run.sh"
 
-EXPORT 8888
+EXPOSE 8888
 
 ENTRYPOINT ["/root/run.sh"]
 CMD jupyter lab --ip 0.0.0.0 --port 8888
