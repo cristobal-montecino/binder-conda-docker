@@ -57,5 +57,5 @@ RUN (\
  cat ./postBuild > /dev/null 2>&1\
  && chmod ug+x ./postBuild\
  && echo 'postBuild found, executing'\
- && ./postBuild\
+ && /app/conda-run ./postBuild\
 ) || echo 'no postBuild, omitting'
