@@ -30,7 +30,7 @@ COPY . .
 USER root
 
 RUN printf "#!/bin/bash\n\
-chown -R \"${USER}\" \"${ENV_DIR}\"\n\
+chown -R \"${UID}\" \"${ENV_DIR}\"\n\
 sudo -u \"${USER}\" \"/usr/local/conda-run.sh\" \"\$@\"\n"\
 > /root/run.sh\
 && chmod +x /root/run.sh\
@@ -43,7 +43,5 @@ conda run -n default \"\${@}\"\n"\
 && chown "${UID}" "/usr/local/conda-run.sh"\
 && chmod +x "/usr/local/conda-run.sh"
 
-USER "${USER}"
-
-ENTRYPOINT ["/usr/local/conda-run.sh"]
+ENTRYPOINT ["/root/run.sh"]
 #CMD jupyter-lab --ip 0.0.0.0 --port 8888
