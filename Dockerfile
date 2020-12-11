@@ -9,6 +9,13 @@ ENV ENV_DIR="${ENV_DIR}"
 RUN mkdir "${ENV_DIR}"
 WORKDIR "${ENV_DIR}"
 
+RUN printf "#!/bin/bash\n\
+cd \"${ENV_DIR}\"\n\
+source /etc/profile.d/conda.sh\n\
+conda activate default\n\
+exec \"\${@}\"\n"\
+> "/usr/local/conda-run.sh"
+
 # Binder arguments
 ARG NB_USER="conda-user"
 ARG NB_UID=1000
@@ -19,7 +26,9 @@ ENV UID="${NB_UID}"
 RUN adduser --comment "Default user"\
     --uid "${UID}"\
     "${USER}"\
-&&  chown -R "${UID}" "${ENV_DIR}"
+&&  chown -R "${UID}" "${ENV_DIR}"\
+&&  chown "${UID}" "/usr/local/conda-run.sh"\
+&&  chmod +x "/usr/local/conda-run.sh"
 
 USER "${USER}"
 
@@ -27,21 +36,5 @@ COPY environment.yml .
 RUN conda env create
 COPY . .
 
-USER root
-
-RUN printf "#!/bin/bash\n\
-chown -R \"${UID}\" \"${ENV_DIR}\"\n\
-sudo -u \"${USER}\" \"/usr/local/conda-run.sh\" \"\$@\"\n"\
-> /root/run.sh\
-&& chmod +x /root/run.sh\
-&& printf "#!/bin/bash\n\
-cd \"${ENV_DIR}\"\n\
-source /etc/profile.d/conda.sh\n\
-conda activate default\n\
-conda run -n default \"\${@}\"\n"\
-> "/usr/local/conda-run.sh"\
-&& chown "${UID}" "/usr/local/conda-run.sh"\
-&& chmod +x "/usr/local/conda-run.sh"
-
-ENTRYPOINT ["/root/run.sh"]
-#CMD jupyter-lab --ip 0.0.0.0 --port 8888
+ENTRYPOINT ["/usr/local/conda-run.sh"]
+CMD jupyter-lab --ip 0.0.0.0 --port 8888
