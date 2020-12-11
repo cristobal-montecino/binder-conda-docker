@@ -1,5 +1,6 @@
 name: default
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - _libgcc_mutex=0.1=main
@@ -9,20 +10,22 @@ dependencies:
   - backcall=0.2.0=py_0
   - bleach=3.2.1=py_0
   - brotlipy=0.7.0=py39h27cfd23_1003
-  - ca-certificates=2020.12.8=h06a4308_0
-  - certifi=2020.12.5=py39h06a4308_0
+  - ca-certificates=2020.12.5=ha878542_0
+  - certifi=2020.12.5=py39hf3d152e_0
   - cffi=1.14.4=py39h261ae71_0
   - chardet=3.0.4=py39h06a4308_1003
-  - cryptography=3.3=py39h3c74f83_0
+  - cryptography=3.3.1=py39h3c74f83_0
   - decorator=4.4.2=py_0
   - defusedxml=0.6.0=py_0
   - entrypoints=0.3=py39h06a4308_0
+  - icu=68.1=h58526e2_0
   - idna=2.10=py_0
   - importlib-metadata=2.0.0=py_1
   - importlib_metadata=2.0.0=1
   - ipykernel=5.3.4=py39hb070fc8_0
   - ipython=7.19.0=py39h06a4308_0
   - ipython_genutils=0.2.0=pyhd3eb1b0_1
+  - ipywidgets=7.5.1=pyh9f0ad1d_1
   - jedi=0.17.2=py39h06a4308_1
   - jinja2=2.11.2=py_0
   - json5=0.9.5=py_0
@@ -38,6 +41,7 @@ dependencies:
   - libgcc-ng=9.1.0=hdf63c60_0
   - libsodium=1.0.18=h7b6447c_0
   - libstdcxx-ng=9.1.0=hdf63c60_0
+  - libuv=1.40.0=hd18ef5c_0
   - markupsafe=1.1.1=py39h27cfd23_0
   - mistune=0.8.4=py39h27cfd23_1000
   - nbclient=0.5.1=py_0
@@ -45,6 +49,7 @@ dependencies:
   - nbformat=5.0.8=py_0
   - ncurses=6.2=he6710b0_1
   - nest-asyncio=1.4.3=pyhd3eb1b0_0
+  - nodejs=15.3.0=h25f6087_0
   - notebook=6.1.4=py39h06a4308_0
   - openssl=1.1.1i=h27cfd23_0
   - packaging=20.7=pyhd3eb1b0_0
@@ -63,8 +68,9 @@ dependencies:
   - pyparsing=2.4.7=py_0
   - pyrsistent=0.17.3=py39h27cfd23_0
   - pysocks=1.7.1=py39h06a4308_0
-  - python=3.9.0=hdb3f193_2
+  - python=3.9.1=hdb3f193_2
   - python-dateutil=2.8.1=py_0
+  - python_abi=3.9=1_cp39
   - pyzmq=20.0.0=py39h2531618_1
   - readline=8.0=h7b6447c_0
   - requests=2.25.0=pyhd3eb1b0_0
@@ -82,8 +88,9 @@ dependencies:
   - wcwidth=0.2.5=py_0
   - webencodings=0.5.1=py39h06a4308_1
   - wheel=0.36.1=pyhd3eb1b0_0
+  - widgetsnbextension=3.5.1=py39hf3d152e_4
   - xz=5.2.5=h7b6447c_0
   - zeromq=4.3.3=he6710b0_3
   - zipp=3.4.0=pyhd3eb1b0_0
   - zlib=1.2.11=h7b6447c_3
-prefix: /home/user/.conda/envs/default
+prefix: /home/jovyan/.conda/envs/default

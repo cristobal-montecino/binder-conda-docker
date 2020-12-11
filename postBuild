@@ -1,1 +1,5 @@
-echo 'postBuild executed!'
+# Install extensions
+jupyter labextension install --no-build @jupyter-widgets/jupyterlab-manager
+
+# Build extensions
+jupyter lab build
