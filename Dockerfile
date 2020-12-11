@@ -45,5 +45,5 @@ exec \"\$@\"\n"\
 
 USER "${USER}"
 
-ENTRYPOINT ["/home/${USER}/conda-run.sh"]
+ENTRYPOINT ["/home/conda-user/conda-run.sh"]
 #CMD jupyter-lab --ip 0.0.0.0 --port 8888
