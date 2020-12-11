@@ -53,9 +53,10 @@ COPY . .
 RUN chown -R "${NB_UID}" "${ENV_DIR}" && chgrp -R conda-app "${ENV_DIR}"
 
 USER "${NB_USER}"
-RUN (\
- cat ./postBuild > /dev/null 2>&1\
- && chmod ug+x ./postBuild\
+RUN if [ -f postBuild ]; then\
+ chmod ug+x ./postBuild\
  && echo 'postBuild found, executing'\
- && /app/conda-run ./postBuild\
-) || echo 'no postBuild, omitting'
+ && /app/conda-run ./postBuild;\
+ else\
+ echo 'no postBuild, omitting';\
+ fi
