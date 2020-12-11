@@ -37,5 +37,5 @@ Explanation:
                   --rm : the container will be removed at server shutdown
           -p 8888:8888 : forwards the container 8888 tcp port to the machine 8888 tcp port
                    -it : makes interactive
-    binder-conda-docker : the image name
+   binder-conda-docker : the image name
 ```
