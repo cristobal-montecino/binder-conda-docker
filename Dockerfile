@@ -43,7 +43,7 @@ exec "${@}"\n'\
  "$(su "${NB_USER}" -c 'conda env list' | grep '/home' | head -n 1 | cut -d ' ' -f1)"\
 > /app/conda-run\
  && chgrp conda-app /app/conda-run\
- && chmod 700 /app/conda-run\
+ && chmod 500 /app/conda-run\
  && chown "${NB_UID}" /app/conda-run
 
 ENTRYPOINT ["/app/conda-run"]
@@ -53,3 +53,9 @@ COPY . .
 RUN chown -R "${NB_UID}" "${ENV_DIR}" && chgrp -R conda-app "${ENV_DIR}"
 
 USER "${NB_USER}"
+RUN (\
+ cat ./postBuild > /dev/null 2>&1\
+ && chmod ug+x ./postBuild\
+ && echo 'postBuild found, executing'\
+ && ./postBuild\
+) || echo 'no postBuild, omitting'
