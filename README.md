@@ -1,6 +1,6 @@
 # Binder
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cristobal-montecino/binder-conda-docker/master?urlpath=lab%2Ftree%2Fmain.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cristobal-montecino/binder-conda-docker/main?urlpath=lab%2Ftree%2Fmain.ipynb)
 
 # Local installation
 
