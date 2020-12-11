@@ -27,7 +27,7 @@ Execute the container:
 
 ```
 $ cd binder-docker-test
-$ sudo docker run --mount type=bind,source="$(pwd)",target=/env --rm -p 8888:8888 binder-docker-test
+$ sudo docker run --mount type=bind,source="$(pwd)",target=/env --rm -p 8888:8888 -it binder-docker-test
 ```
 
 Explanation:
@@ -36,5 +36,6 @@ Explanation:
 --mount type=bind,source="$(pwd)",target=/env : Binds the local 'binder-docker-test' directory to the container '/env' directory
                   --rm : the container will be removed at server shutdown
           -p 8888:8888 : forwards the container 8888 tcp port to the machine 8888 tcp port
+                   -it : makes interactive
     binder-docker-test : the image name
 ```
