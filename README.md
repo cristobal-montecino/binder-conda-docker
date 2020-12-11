@@ -11,8 +11,8 @@ This install a development container
 Build the image:
 
 ```
-git clone https://github.com/cristobal-montecino/binder-docker-test.git
-sudo docker build -t binder-docker-test binder-docker-test
+$ git clone https://github.com/cristobal-montecino/binder-docker-test.git
+$ sudo docker build -t binder-docker-test binder-docker-test
 ```
 
 Explanation:
