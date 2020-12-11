@@ -22,7 +22,7 @@ conda activate default\n\
 exec \"\${@}\"\n"\
 > /app/conda-run\
  && chgrp -R conda-app /app\
- && chmod g+x /app/conda-run
+ && chmod 500 /app/conda-run
 
 ENTRYPOINT ["/app/conda-run"]
 CMD jupyter-lab --ip 0.0.0.0 --port 8888
@@ -37,20 +37,24 @@ ENV NB_UID="${NB_UID}"
 RUN adduser --comment "Default user" --uid "${NB_UID}" "${USER}"\
  && usermod -a -G conda-app "${USER}"\
  && chown -R "${NB_UID}" "${ENV_DIR}"\
+ && chown "${USER}" /app/conda-run\
  && printf "#include <stdlib.h>\n#include <unistd.h>\n#include <sys/types.h>\n\
 int main() {\n\
 setuid(geteuid());\n\
-return system(\"chown -R \\\\\"${NB_UID}\\\\\" \\\\\"${ENV_DIR}\\\\\"\");\n\
+system(\"chown -R \\\\\"${NB_UID}\\\\\" \\\\\"${ENV_DIR}\\\\\"\");\n\
+return 0;\n\
 }"\
 > /app/set-owner.c && gcc -O2 -o /app/set-owner /app/set-owner.c && rm /app/set-owner.c\
  && chown root /app/set-owner\
  && chgrp conda-app /app/set-owner\
- && chmod u+s,g+x,o-rwx /app/set-owner
+ && chmod u=s,g=x,o= /app/set-owner
 
 USER "${USER}"
 
 COPY environment.yml .
 RUN conda env create
 
+USER root
 COPY . .
-RUN /app/set-owner && chgrp -R conda-app "${ENV_DIR}"
+RUN chown -R "${NB_UID}" "${ENV_DIR}" && chgrp -R conda-app "${ENV_DIR}"
+USER "${USER}"
