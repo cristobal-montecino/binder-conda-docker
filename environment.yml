@@ -93,4 +93,3 @@ dependencies:
   - zeromq=4.3.3=he6710b0_3
   - zipp=3.4.0=pyhd3eb1b0_0
   - zlib=1.2.11=h7b6447c_3
-prefix: /home/jovyan/.conda/envs/default
